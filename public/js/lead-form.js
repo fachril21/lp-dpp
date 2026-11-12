@@ -61,16 +61,11 @@
     return (h === 'linkedin.com' || /\.linkedin\.com$/.test(h)) && /^\/in\/[^/]+/.test(u.pathname);
   }
 
+  function validCvLink(raw) { return validDrive(raw) || validLinkedin(raw); }
+
   /* ---------- errors ---------- */
   function fieldEl(name) { return form.querySelector('[data-field="' + name + '"]'); }
   function setError(name, msg) {
-    if (name === 'cvany') {
-      var g = root.querySelector('#lf-cv-any-err');
-      g.textContent = msg;
-      g.hidden = !msg;
-      if (msg) g.setAttribute('role', 'alert');
-      return;
-    }
     var f = fieldEl(name);
     if (!f) return;
     var err = f.querySelector('.lf-error');
@@ -121,19 +116,10 @@
       }],
     ],
     3: [
-      ['cvany', function () {
-        return val('cv') || val('linkedin') ? '' : 'Isi minimal satu: link CV atau profil LinkedIn.';
-      }],
       ['cv', function () {
         var v = val('cv');
-        if (!v) return '';
-        if (!validDrive(v)) return 'Gunakan link Google Drive (drive.google.com atau docs.google.com).';
-        return '';
-      }],
-      ['linkedin', function () {
-        var v = val('linkedin');
-        if (!v) return '';
-        if (!validLinkedin(v)) return 'Gunakan link profil LinkedIn, contoh: linkedin.com/in/namamu.';
+        if (!v) return 'Link CV atau profil LinkedIn wajib diisi.';
+        if (!validCvLink(v)) return 'Gunakan link Google Drive (drive.google.com / docs.google.com) atau profil LinkedIn (linkedin.com/in/namamu).';
         return '';
       }],
     ],
@@ -145,7 +131,7 @@
     rules[n].forEach(function (r) {
       var msg = r[1]();
       setError(r[0], msg);
-      if (msg && !first) first = fieldEl(r[0] === 'cvany' ? 'cv' : r[0]);
+      if (msg && !first) first = fieldEl(r[0]);
     });
     return first;
   }
@@ -225,7 +211,6 @@
   function reset() {
     window.clearTimeout(redirectTimer);
     form.reset();
-    setError('cvany', '');
     root.querySelectorAll('.lf-field').forEach(function (f) { setError(f.getAttribute('data-field'), ''); });
     root.querySelector('.lf-other').hidden = true;
     done.hidden = true;
@@ -253,7 +238,6 @@
   form.addEventListener('input', function (e) {
     var f = e.target.closest('.lf-field');
     if (f && f.hasAttribute('data-invalid')) setError(f.getAttribute('data-field'), '');
-    if (e.target.name === 'cv' || e.target.name === 'linkedin') setError('cvany', '');
   });
   form.addEventListener('change', function (e) {
     var t = e.target;
@@ -272,11 +256,9 @@
     if (validWa(n)) this.value = '+' + n.replace(/^(\d{2})(\d{3,4})(\d{3,4})(\d*)$/, '$1 $2 $3 $4').trim();
   });
 
-  // Tidy pasted links (add https://) once the user leaves the field.
-  [['cv', validDrive], ['linkedin', validLinkedin]].forEach(function (pair) {
-    form.elements[pair[0]].addEventListener('blur', function () {
-      if (pair[1](this.value)) this.value = normalizeUrl(this.value);
-    });
+  // Tidy a pasted link (add https://) once the user leaves the field.
+  form.elements.cv.addEventListener('blur', function () {
+    if (validCvLink(this.value)) this.value = normalizeUrl(this.value);
   });
 
   go(1, { silent: true });

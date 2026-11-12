@@ -129,21 +129,12 @@ const check =
         <!-- Step 3 -->
         <div class="lf-panel" data-step="3" role="group" aria-labelledby="lf-h3" hidden>
           <h2 class="lf-h" id="lf-h3" tabindex="-1">Terakhir, lampirkan CV atau profil LinkedIn-mu</h2>
-          <p class="lf-hint lf-hint--lead" id="lf-cv-any">Isi salah satu atau keduanya.</p>
-          <p class="lf-error" id="lf-cv-any-err" hidden></p>
 
           <div class="lf-field" data-field="cv">
-            <label class="lf-label" for="lf-cv">Link CV / resume (Google Drive)</label>
-            <input class="lf-input" id="lf-cv" name="cv" type="text" inputmode="url" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="https://drive.google.com/file/d/..." aria-describedby="lf-cv-hint lf-cv-err" />
-            <p class="lf-hint" id="lf-cv-hint">Unggah CV ke Google Drive, klik <strong>Bagikan</strong>, lalu ubah akses ke <strong>“Siapa saja yang memiliki link”</strong> agar advisor bisa membukanya.</p>
+            <label class="lf-label" for="lf-cv">Link CV (Google Drive) atau profil LinkedIn</label>
+            <input class="lf-input" id="lf-cv" name="cv" type="text" inputmode="url" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="Tempel link CV atau LinkedIn" required aria-describedby="lf-cv-hint lf-cv-err" />
+            <p class="lf-hint" id="lf-cv-hint">Pakai Google Drive? Klik <strong>Bagikan</strong>, lalu ubah akses ke <strong>“Siapa saja yang memiliki link”</strong>. Pakai LinkedIn? Pastikan profilmu bisa dilihat publik.</p>
             <p class="lf-error" id="lf-cv-err" hidden></p>
-          </div>
-
-          <div class="lf-field" data-field="linkedin">
-            <label class="lf-label" for="lf-linkedin">Link profil LinkedIn</label>
-            <input class="lf-input" id="lf-linkedin" name="linkedin" type="text" inputmode="url" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="linkedin.com/in/namamu" aria-describedby="lf-linkedin-hint lf-linkedin-err" />
-            <p class="lf-hint" id="lf-linkedin-hint">Pastikan profilmu bisa dilihat publik agar advisor bisa membukanya.</p>
-            <p class="lf-error" id="lf-linkedin-err" hidden></p>
           </div>
         </div>
 

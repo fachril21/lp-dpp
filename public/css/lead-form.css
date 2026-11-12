@@ -207,4 +207,3 @@ body {
 .lf-sub { margin: 0; max-width: 460px; font-size: 14px; line-height: 1.65; color: var(--lf-body); }
 .lf-done-icon { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; background: var(--lf-primary-100); color: var(--lf-primary); }
 .lf-done-icon svg { width: 28px; height: 28px; }
-.lf-hint--lead { margin-top: -10px; font-size: 13px; }
