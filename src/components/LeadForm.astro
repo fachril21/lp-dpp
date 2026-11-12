@@ -16,22 +16,31 @@ const check =
   '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l3 3 5-6"/></svg>';
 ---
 
-<section id="daftar" class="lf" data-skin="card" aria-label="Form pendaftaran Dibimbing Placement Program" hidden>
-  <div class="lf-blob lf-blob--a" aria-hidden="true"></div>
-  <div class="lf-blob lf-blob--b" aria-hidden="true"></div>
+<header class="lf-bar">
+  <div class="lf-bar-in">
+    <a href="/job-placement-program" aria-label="Dibimbing, kembali ke halaman program">
+      <img src="https://dibimbing-cdn.sgp1.cdn.digitaloceanspaces.com/logo-dibimbing.webp" alt="dibimbing" width="135" height="27" />
+    </a>
+    <a class="lf-back" href="/job-placement-program">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>
+      Kembali<span class="lf-back-long">&nbsp;ke halaman program</span>
+    </a>
+  </div>
+</header>
 
-  <div class="lf-wrap">
-    <div class="lf-intro">
+<div class="lf">
+  <aside class="lf-aside">
+    <div class="lf-aside-in">
       <span class="lf-pill">Seleksi Program</span>
-      <h2 class="lf-title lf-title--card">Isi Data Singkat, <span class="lf-hl">Lanjut ke WhatsApp</span></h2>
-      <h2 class="lf-title lf-title--band" aria-hidden="true">Mulai Karier Impianmu <span class="lf-hl">Tanpa Risiko</span></h2>
-      <p class="lf-sub lf-sub--card">Jawab beberapa pertanyaan dalam 3 langkah agar advisor kami bisa menyiapkan sesi konsultasi yang sesuai dengan profilmu.</p>
-      <p class="lf-sub lf-sub--band">Dapatkan pekerjaan dalam <strong>6 bulan</strong> atau <strong>pengembalian uang 100%</strong>. Isi data singkat di samping, lalu lanjutkan percakapan dengan tim kami lewat WhatsApp.</p>
+      <h1 class="lf-title">Mulai Karier Impianmu <span>Tanpa Risiko</span></h1>
+      <p class="lf-lede">Dapatkan pekerjaan dalam <strong>6 bulan</strong> atau <strong>pengembalian uang 100%</strong>. Jawab 3 langkah singkat, lalu lanjutkan percakapan dengan tim kami lewat WhatsApp.</p>
       <ul class="lf-points">
         {points.map((p) => <li><Fragment set:html={check} />{p}</li>)}
       </ul>
     </div>
+  </aside>
 
+  <main class="lf-main" id="daftar">
     <div class="lf-card">
       <form class="lf-form" novalidate autocomplete="on">
         <ol class="lf-steps" aria-label="Langkah pengisian">
@@ -45,7 +54,7 @@ const check =
 
         <!-- Step 1 -->
         <div class="lf-panel" data-step="1" role="group" aria-labelledby="lf-h1">
-          <h3 class="lf-h" id="lf-h1" tabindex="-1">Kenalan dulu, yuk</h3>
+          <h2 class="lf-h" id="lf-h1" tabindex="-1">Kenalan dulu, yuk</h2>
           <div class="lf-field" data-field="name">
             <label class="lf-label" for="lf-name">Nama lengkap</label>
             <input class="lf-input" id="lf-name" name="name" type="text" autocomplete="name" placeholder="Contoh: Budi Santoso" required />
@@ -61,31 +70,35 @@ const check =
 
         <!-- Step 2 -->
         <div class="lf-panel" data-step="2" role="group" aria-labelledby="lf-h2" hidden>
-          <h3 class="lf-h" id="lf-h2" tabindex="-1">Ceritakan profil kariermu</h3>
+          <h2 class="lf-h" id="lf-h2" tabindex="-1">Ceritakan profil kariermu</h2>
 
-          <div class="lf-field" data-field="age" role="radiogroup" aria-labelledby="lf-age-l">
-            <span class="lf-label" id="lf-age-l">Usia kamu saat ini</span>
-            <div class="lf-opts lf-opts--chips">
-              {ages.map((a) => (
-                <label class="lf-opt"><input type="radio" name="age" value={a} /><span>{a}</span></label>
-              ))}
+          <div class="lf-row">
+            <div class="lf-field" data-field="age">
+              <label class="lf-label" for="lf-age">Usia kamu saat ini</label>
+              <span class="lf-select">
+                <select class="lf-input" id="lf-age" name="age" required>
+                  <option value="" disabled selected>Pilih rentang usia</option>
+                  {ages.map((a) => <option value={a}>{a}</option>)}
+                </select>
+              </span>
+              <p class="lf-error" hidden></p>
             </div>
-            <p class="lf-error" hidden></p>
+
+            <div class="lf-field" data-field="exp">
+              <label class="lf-label" for="lf-exp">Pengalaman kerja profesional</label>
+              <span class="lf-select">
+                <select class="lf-input" id="lf-exp" name="exp" required>
+                  <option value="" disabled selected>Pilih lama pengalaman</option>
+                  {experiences.map((a) => <option value={a}>{a}</option>)}
+                </select>
+              </span>
+              <p class="lf-error" hidden></p>
+            </div>
           </div>
 
           <div class="lf-field" data-field="job">
             <label class="lf-label" for="lf-job">Apa pekerjaan kamu saat ini?</label>
             <input class="lf-input" id="lf-job" name="job" type="text" autocomplete="organization-title" placeholder="Contoh: Marketing Executive" required />
-            <p class="lf-error" hidden></p>
-          </div>
-
-          <div class="lf-field" data-field="exp" role="radiogroup" aria-labelledby="lf-exp-l">
-            <span class="lf-label" id="lf-exp-l">Berapa lama pengalaman kerja profesional kamu?</span>
-            <div class="lf-opts lf-opts--chips">
-              {experiences.map((a) => (
-                <label class="lf-opt"><input type="radio" name="exp" value={a} /><span>{a}</span></label>
-              ))}
-            </div>
             <p class="lf-error" hidden></p>
           </div>
 
@@ -97,7 +110,7 @@ const check =
 
           <div class="lf-field" data-field="goal" role="radiogroup" aria-labelledby="lf-goal-l">
             <span class="lf-label" id="lf-goal-l">Apa tujuan kamu mengikuti Dibimbing Placement Program?</span>
-            <div class="lf-opts lf-opts--list">
+            <div class="lf-opts">
               {goals.map((g) => (
                 <label class="lf-opt"><input type="radio" name="goal" value={g} /><span>{g}</span></label>
               ))}
@@ -112,7 +125,7 @@ const check =
 
         <!-- Step 3 -->
         <div class="lf-panel" data-step="3" role="group" aria-labelledby="lf-h3" hidden>
-          <h3 class="lf-h" id="lf-h3" tabindex="-1">Terakhir, lampirkan CV kamu</h3>
+          <h2 class="lf-h" id="lf-h3" tabindex="-1">Terakhir, lampirkan CV kamu</h2>
           <div class="lf-field" data-field="cv">
             <label class="lf-label" for="lf-cv">Link CV / resume (Google Drive)</label>
             <input class="lf-input" id="lf-cv" name="cv" type="url" inputmode="url" placeholder="https://drive.google.com/file/d/..." required aria-describedby="lf-cv-hint lf-cv-err" />
@@ -130,13 +143,13 @@ const check =
 
       <div class="lf-done" hidden tabindex="-1" aria-live="polite">
         <span class="lf-done-icon"><Fragment set:html={check} /></span>
-        <h3 class="lf-h">Terima kasih, <span data-done-name>kamu</span>!</h3>
-        <p class="lf-sub">Datamu sudah kami susun. Jika WhatsApp belum terbuka otomatis, klik tombol di bawah untuk melanjutkan percakapan dengan tim Dibimbing.</p>
+        <h2 class="lf-h">Terima kasih, <span data-done-name>kamu</span>!</h2>
+        <p class="lf-sub">Datamu sudah kami susun. Kamu sedang dialihkan ke WhatsApp untuk melanjutkan percakapan dengan tim Dibimbing. Jika tidak terbuka otomatis, klik tombol di bawah.</p>
         <div class="lf-actions lf-actions--center">
-          <a class="lf-btn lf-btn--primary" data-done-link href="#" target="_blank" rel="noopener">Buka WhatsApp</a>
+          <a class="lf-btn lf-btn--primary" data-done-link href="#">Buka WhatsApp</a>
           <button type="button" class="lf-btn lf-btn--ghost" data-act="reset">Isi ulang</button>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </main>
+</div>

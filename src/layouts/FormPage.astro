@@ -1,0 +1,23 @@
+---
+interface Props {
+  title: string;
+}
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <link rel="icon" type="image/jpeg" href="https://dibimbing-cdn.sgp1.cdn.digitaloceanspaces.com/dibimbing.jpeg" />
+    <title>{title}</title>
+    <link href="/fonts/plusJakartaSans.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/lead-form.css" />
+  </head>
+  <body>
+    <slot />
+    <script is:inline src="/js/lead-form.js"></script>
+  </body>
+</html>

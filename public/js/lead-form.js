@@ -3,7 +3,7 @@
   'use strict';
 
   var WA_PHONE = '6281227741541';
-  var root = document.getElementById('daftar');
+  var root = document.querySelector('.lf');
   if (!root) return;
 
   var form = root.querySelector('.lf-form');
@@ -14,6 +14,7 @@
   var btnSubmit = root.querySelector('[data-act="submit"]');
   var done = root.querySelector('.lf-done');
   var step = 1;
+  var redirectTimer = null;
 
   /* ---------- helpers ---------- */
   function val(name) {
@@ -85,9 +86,9 @@
       }],
     ],
     2: [
-      ['age', function () { return radio('age') ? '' : 'Pilih salah satu rentang usia.'; }],
+      ['age', function () { return val('age') ? '' : 'Pilih salah satu rentang usia.'; }],
       ['job', function () { return val('job') ? '' : 'Pekerjaanmu saat ini wajib diisi. Jika belum bekerja, tulis "Belum bekerja".'; }],
-      ['exp', function () { return radio('exp') ? '' : 'Pilih lama pengalaman kerjamu.'; }],
+      ['exp', function () { return val('exp') ? '' : 'Pilih lama pengalaman kerjamu.'; }],
       ['target', function () { return val('target') ? '' : 'Tulis posisi atau jabatan yang ingin kamu capai.'; }],
       ['goal', function () {
         var g = radio('goal');
@@ -163,9 +164,9 @@
       '',
       '*Nama lengkap:* ' + val('name'),
       '*WhatsApp:* +' + normalizeWa(val('wa')),
-      '*Usia:* ' + radio('age'),
+      '*Usia:* ' + val('age'),
       '*Pekerjaan saat ini:* ' + val('job'),
-      '*Pengalaman kerja:* ' + radio('exp'),
+      '*Pengalaman kerja:* ' + val('exp'),
       '*Posisi yang dituju:* ' + val('target'),
       '*Tujuan mengikuti DPP:* ' + goal,
       '*Link CV/Resume:* ' + val('cv'),
@@ -190,10 +191,12 @@
     form.hidden = true;
     done.hidden = false;
     done.focus({ preventScroll: true });
-    window.open(url, '_blank', 'noopener');
+    // Same-tab redirect after a short confirmation; the "Buka WhatsApp" link is the fallback.
+    redirectTimer = window.setTimeout(function () { window.location.assign(url); }, 1400);
   }
 
   function reset() {
+    window.clearTimeout(redirectTimer);
     form.reset();
     root.querySelectorAll('.lf-field').forEach(function (f) { setError(f.getAttribute('data-field'), ''); });
     root.querySelector('.lf-other').hidden = true;
@@ -242,11 +245,7 @@
 
   go(1, { silent: true });
 
-  // Exposed for the preview switcher.
-  window.__leadForm = {
-    focusFirst: function () {
-      var el = root.querySelector('.lf-panel:not([hidden]) .lf-input');
-      if (el) el.focus({ preventScroll: true });
-    },
-  };
+  // Focus the first field on desktop only; on phones it would pop the keyboard before the page is read.
+  var first = root.querySelector('.lf-panel:not([hidden]) .lf-input');
+  if (first && window.matchMedia('(min-width: 1024px)').matches) first.focus({ preventScroll: true });
 })();

@@ -5,15 +5,24 @@ import footer from '../fragments/footer.html?raw';
 import cookie from '../fragments/cookie.html?raw';
 import pricingCicil from '../fragments/pricing-cicil.html?raw';
 import inlineStyles from '../fragments/inline-styles.css?raw';
-import LeadForm from '../components/LeadForm.astro';
 
 const ORIGIN = 'https://dibimbing.id';
 // Internal links on the reference site are root-relative; keep them pointing at the real site,
 // except for this page itself.
 const absolutize = (html: string) =>
   html.replace(/href="\/(?!\/)([^"]*)"/g, (m, path: string) =>
-    path.replace(/\s+$/, '') === 'job-placement-program' ? m : `href="${ORIGIN}/${path.replace(/\s+$/, '')}"`,
+    ['job-placement-program', 'daftar'].includes(path.replace(/\s+$/, '')) ? m : `href="${ORIGIN}/${path.replace(/\s+$/, '')}"`,
   );
+
+// Every WhatsApp CTA on the landing page now opens the on-site form instead.
+const FORM_PATH = '/daftar';
+const toForm = (html: string) =>
+  html
+    .replace(
+      /<a href="https:\/\/api\.whatsapp\.com\/send[^"]*" target="_blank"/g,
+      `<a href="${FORM_PATH}"`,
+    )
+    .replace(/<button( class="[^"]*">\s*Ikuti Seleksi Program\s*)<\/button>/g, `<a href="${FORM_PATH}" style="text-decoration:none"$1</a>`);
 ---
 
 <!doctype html>
@@ -39,20 +48,16 @@ const absolutize = (html: string) =>
     <link href="/css/carousel.css" rel="stylesheet" />
     <link rel="stylesheet" href="/_astro/about-us.DzN4RO3c.css" />
     <link rel="stylesheet" href="/_astro/bnsp.DvB2Xm2x.css" />
-    <link rel="stylesheet" href="/css/lead-form.css" />
     <style is:inline set:html={inlineStyles}></style>
     <style>astro-island,astro-slot,astro-static-slot{display:contents}</style>
   </head>
   <body>
     <Fragment set:html={absolutize(navbar)} />
-    <Fragment set:html={absolutize(main)} />
-    <LeadForm />
+    <Fragment set:html={absolutize(toForm(main))} />
     <Fragment set:html={absolutize(footer)} />
     <Fragment set:html={absolutize(cookie)} />
-    <template id="pricing-cicil" set:html={pricingCicil} />
+    <template id="pricing-cicil" set:html={toForm(pricingCicil)} />
     <script is:inline src="/aos/aos.js"></script>
     <script is:inline src="/js/page.js"></script>
-    <script is:inline src="/js/lead-form.js"></script>
-    <script is:inline src="/js/preview-switcher.js"></script>
   </body>
 </html>
