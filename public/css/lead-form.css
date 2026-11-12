@@ -74,8 +74,8 @@ body {
 .lf-lede { margin: 0; font-size: 15px; line-height: 1.65; color: rgba(255, 255, 255, 0.92); }
 .lf-lede strong { font-weight: 700; color: #fff; }
 .lf-points { list-style: none; margin: 24px 0 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
-.lf-points li { display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 600; }
-.lf-points svg { flex: none; color: var(--lf-lime); }
+.lf-points li { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; font-weight: 600; line-height: 1.5; }
+.lf-points svg { flex: none; margin-top: 1px; color: var(--lf-lime); }
 @media (min-width: 1024px) {
   .lf-title { font-size: 44px; letter-spacing: -0.01em; }
   .lf-lede { font-size: 16px; }
@@ -207,3 +207,4 @@ body {
 .lf-sub { margin: 0; max-width: 460px; font-size: 14px; line-height: 1.65; color: var(--lf-body); }
 .lf-done-icon { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; background: var(--lf-primary-100); color: var(--lf-primary); }
 .lf-done-icon svg { width: 28px; height: 28px; }
+.lf-hint--lead { margin-top: -10px; font-size: 13px; }

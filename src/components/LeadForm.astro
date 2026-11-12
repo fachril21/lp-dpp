@@ -9,8 +9,12 @@ const goals = [
   'Naik jabatan sekaligus mendapatkan kenaikan gaji.',
   'Lainnya',
 ];
-const steps = ['Kontak', 'Profil Karier', 'CV / Resume'];
-const points = ['Garansi Kerja dalam 6 Bulan', 'Jaminan Refund 100%', 'Personal Advisor Berdedikasi'];
+const steps = ['Kontak', 'Profil Karier', 'CV / LinkedIn'];
+const points = [
+  'Optimasi CV, LinkedIn, dan Personal Branding secara Berkala',
+  'Pendampingan Aktif Mulai dari HR Interview hingga Penawaran Kerja',
+  'Konsultasi 1-on-1 Bersama Domain Specialist',
+];
 
 const check =
   '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l3 3 5-6"/></svg>';
@@ -23,7 +27,7 @@ const check =
     </a>
     <a class="lf-back" href="/job-placement-program">
       <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>
-      Kembali<span class="lf-back-long">&nbsp;ke halaman program</span>
+      Kembali<span class="lf-back-long"> ke halaman program</span>
     </a>
   </div>
 </header>
@@ -32,8 +36,8 @@ const check =
   <aside class="lf-aside">
     <div class="lf-aside-in">
       <span class="lf-pill">Seleksi Program</span>
-      <h1 class="lf-title">Mulai Karier Impianmu <span>Tanpa Risiko</span></h1>
-      <p class="lf-lede">Dapatkan pekerjaan dalam <strong>6 bulan</strong> atau <strong>pengembalian uang 100%</strong>. Jawab 3 langkah singkat, lalu lanjutkan percakapan dengan tim kami lewat WhatsApp.</p>
+      <h1 class="lf-title">Dapatkan Karier Impianmu, <span>Tanpa Risiko</span></h1>
+      <p class="lf-lede">Garansi kerja dalam <strong>6 bulan</strong> dan jaminan <strong>refund 100%</strong>. Ceritakan tujuan kariermu dalam 3 langkah singkat, lalu Personal Advisor kami siap menghubungimu via WhatsApp.</p>
       <ul class="lf-points">
         {points.map((p) => <li><Fragment set:html={check} />{p}</li>)}
       </ul>
@@ -125,12 +129,22 @@ const check =
 
         <!-- Step 3 -->
         <div class="lf-panel" data-step="3" role="group" aria-labelledby="lf-h3" hidden>
-          <h2 class="lf-h" id="lf-h3" tabindex="-1">Terakhir, lampirkan CV kamu</h2>
+          <h2 class="lf-h" id="lf-h3" tabindex="-1">Terakhir, lampirkan CV atau profil LinkedIn-mu</h2>
+          <p class="lf-hint lf-hint--lead" id="lf-cv-any">Isi salah satu atau keduanya.</p>
+          <p class="lf-error" id="lf-cv-any-err" hidden></p>
+
           <div class="lf-field" data-field="cv">
             <label class="lf-label" for="lf-cv">Link CV / resume (Google Drive)</label>
-            <input class="lf-input" id="lf-cv" name="cv" type="url" inputmode="url" placeholder="https://drive.google.com/file/d/..." required aria-describedby="lf-cv-hint lf-cv-err" />
+            <input class="lf-input" id="lf-cv" name="cv" type="text" inputmode="url" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="https://drive.google.com/file/d/..." aria-describedby="lf-cv-hint lf-cv-err" />
             <p class="lf-hint" id="lf-cv-hint">Unggah CV ke Google Drive, klik <strong>Bagikan</strong>, lalu ubah akses ke <strong>“Siapa saja yang memiliki link”</strong> agar advisor bisa membukanya.</p>
             <p class="lf-error" id="lf-cv-err" hidden></p>
+          </div>
+
+          <div class="lf-field" data-field="linkedin">
+            <label class="lf-label" for="lf-linkedin">Link profil LinkedIn</label>
+            <input class="lf-input" id="lf-linkedin" name="linkedin" type="text" inputmode="url" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="linkedin.com/in/namamu" aria-describedby="lf-linkedin-hint lf-linkedin-err" />
+            <p class="lf-hint" id="lf-linkedin-hint">Pastikan profilmu bisa dilihat publik agar advisor bisa membukanya.</p>
+            <p class="lf-error" id="lf-linkedin-err" hidden></p>
           </div>
         </div>
 
