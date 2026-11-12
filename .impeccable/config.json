@@ -1,0 +1,14 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "plus jakarta sans",
+        "createdAt": "2026-11-12T04:02:32.547Z",
+        "reason": "Brand font of the dibimbing.id reference page; user asked for the form to follow Dibimbing brand guidelines and the page to match the reference exactly"
+      }
+    ]
+  }
+}

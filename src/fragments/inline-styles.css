@@ -1,0 +1,83 @@
+html{scroll-behavior:smooth!important}
+:root{--accent: 124, 58, 237;--accent-gradient: linear-gradient( 45deg, rgb(var(--accent)), #da62c4 30%, white 60% )}*{font-family:Plus Jakarta Sans,sans-serif}html{font-family:Plus Jakarta Sans,sans-serif;background-color:#fff;overflow-x:clip}body{overflow-x:clip}code{font-family:Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace}@keyframes sliding{0%{transform:translate(0)}to{transform:translate(-12600px)}}.animate-sliding{animation:sliding 120s linear infinite}.side-item-box-shadow{cursor:pointer;box-shadow:inset 2px 0 #ccd4db;transition:ease .5}.side-item-box-shadow:hover{cursor:pointer;box-shadow:inset 2px 0 #0bb1cb;transition:ease .5}.side-item-box-shadow-active{cursor:pointer;box-shadow:inset 2px 0 #0bb1cb;background-color:#0bb1cb1a;transition:ease .5}.side-item-box-shadow-mobile{cursor:pointer;box-shadow:0 -2px #e1e7ec inset;transition:ease .5}.side-item-box-shadow-mobile:hover{cursor:pointer;box-shadow:0 -2px #0bb1cb inset;transition:ease .5}.side-item-box-shadow-active-mobile{cursor:pointer;box-shadow:0 -2px #0bb1cb inset;background-color:#0bb1cb1a;transition:ease .5}.transition-ease{transition:ease .5s}.hide-scroll-bar{-ms-overflow-style:none;scrollbar-height:none;scrollbar-color:white transparent;scroll-behavior:smooth}.hashtag{color:#0bb1cb}@keyframes bounce-back{0%{transform:translateY(-4px)}40%{transform:translateY(2px)}70%{transform:translateY(-1px)}to{transform:translateY(0)}}.btn-bounce-hover{transition:transform .15s ease-out,background-color .2s ease}.btn-bounce-hover:hover{transform:translateY(-4px)}.btn-bounce-hover:not(:hover){animation:bounce-back .4s ease-out}@keyframes gradient-slide{0%{transform:translate(-100%)}to{transform:translate(0)}}.topic-card-loader{position:absolute;bottom:0;left:0;right:0;height:5px;overflow:hidden;opacity:0;transition:opacity .3s ease}.topic-card-loader:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#0bb1cb -24.08%,#d6fd91 122.24%);transform:translate(-100%)}.group:hover .topic-card-loader{opacity:1}.group:hover .topic-card-loader:after{animation:gradient-slide .5s ease-out forwards}.faculty-label-hover{position:relative;background:#fff;transition:all .3s ease}.faculty-label-hover:before{content:"";position:absolute;inset:0;border-radius:9999px;padding:1px;background:linear-gradient(90deg,#0bb1cb -24.08%,#d6fd91 122.24%);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .3s ease}.faculty-label-hover:hover:before{opacity:1}
+
+
+        .logo-carousel:hover .logo-track,
+        .logo-carousel:has(.logo-track:active) .logo-track {
+          animation-play-state: paused;
+        }
+      
+
+  .faq-answer p {
+    margin: 0 0 10px 0;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #4B5563;
+  }
+  .faq-answer p:last-child {
+    margin-bottom: 0;
+  }
+  .faq-answer ul,
+  .faq-answer ol {
+    margin: 8px 0 10px 0;
+    padding-left: 20px;
+  }
+  .faq-answer ul {
+    list-style-type: disc;
+  }
+  .faq-answer ol {
+    list-style-type: decimal;
+  }
+  .faq-answer li {
+    margin-bottom: 4px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #4B5563;
+  }
+  .faq-answer strong, 
+  .faq-answer b {
+    font-weight: 600;
+    color: #1F1F1F;
+  }
+  .faq-answer em,
+  .faq-answer i {
+    font-style: italic;
+  }
+  .faq-answer a {
+    color: #0BB1CB;
+    text-decoration: underline;
+  }
+  .faq-answer a:hover {
+    color: #0990a8;
+  }
+  .faq-answer h1, .faq-answer h2, .faq-answer h3,
+  .faq-answer h4, .faq-answer h5, .faq-answer h6 {
+    font-weight: 600;
+    color: #1F1F1F;
+    margin: 12px 0 6px 0;
+    line-height: 1.3;
+  }
+  .faq-answer blockquote {
+    border-left: 3px solid #0BB1CB;
+    padding-left: 12px;
+    margin: 10px 0;
+    color: #6B7280;
+    font-style: italic;
+  }
+  .faq-answer table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+    font-size: 13px;
+  }
+  .faq-answer table td,
+  .faq-answer table th {
+    border: 1px solid #E5E7EB;
+    padding: 8px 12px;
+    color: #4B5563;
+  }
+  .faq-answer table th {
+    background-color: #F9FAFB;
+    font-weight: 600;
+    color: #1F1F1F;
+  }

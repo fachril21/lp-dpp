@@ -1,0 +1,58 @@
+---
+import navbar from '../fragments/navbar.html?raw';
+import main from '../fragments/main.html?raw';
+import footer from '../fragments/footer.html?raw';
+import cookie from '../fragments/cookie.html?raw';
+import pricingCicil from '../fragments/pricing-cicil.html?raw';
+import inlineStyles from '../fragments/inline-styles.css?raw';
+import LeadForm from '../components/LeadForm.astro';
+
+const ORIGIN = 'https://dibimbing.id';
+// Internal links on the reference site are root-relative; keep them pointing at the real site,
+// except for this page itself.
+const absolutize = (html: string) =>
+  html.replace(/href="\/(?!\/)([^"]*)"/g, (m, path: string) =>
+    path.replace(/\s+$/, '') === 'job-placement-program' ? m : `href="${ORIGIN}/${path.replace(/\s+$/, '')}"`,
+  );
+---
+
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/jpeg" href="https://dibimbing-cdn.sgp1.cdn.digitaloceanspaces.com/dibimbing.jpeg" />
+    <title>Dibimbing Placement Program (DPP) | Jaminan Uang Kembali 6 Bulan</title>
+    <meta
+      name="description"
+      content="Dibimbing Placement Program adalah program penyaluran kerja dengan jaminan uang kembali 6 bulan. Dapatkan career preparation, portfolio building, dan placement support hingga bekerja."
+    />
+    <meta name="keywords" content="Dibimbing" />
+    <meta content="Dibimbing" name="author" />
+    <link rel="canonical" href="https://dibimbing.id/job-placement-program" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="/fonts/plusJakartaSans.css" rel="stylesheet" />
+    <link href="/aos/aos.css" rel="stylesheet" />
+    <link href="/css/global.css" rel="stylesheet" />
+    <link href="/css/spinner.css" rel="stylesheet" />
+    <link href="/css/carousel.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/_astro/about-us.DzN4RO3c.css" />
+    <link rel="stylesheet" href="/_astro/bnsp.DvB2Xm2x.css" />
+    <link rel="stylesheet" href="/css/lead-form.css" />
+    <style is:inline set:html={inlineStyles}></style>
+    <style>astro-island,astro-slot,astro-static-slot{display:contents}</style>
+  </head>
+  <body>
+    <Fragment set:html={absolutize(navbar)} />
+    <Fragment set:html={absolutize(main)} />
+    <LeadForm />
+    <Fragment set:html={absolutize(footer)} />
+    <Fragment set:html={absolutize(cookie)} />
+    <template id="pricing-cicil" set:html={pricingCicil} />
+    <script is:inline src="/aos/aos.js"></script>
+    <script is:inline src="/js/page.js"></script>
+    <script is:inline src="/js/lead-form.js"></script>
+    <script is:inline src="/js/preview-switcher.js"></script>
+  </body>
+</html>
